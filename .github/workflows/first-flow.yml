@@ -1,2 +1,32 @@
-- name: testing github workflows
-  
+# The name of the automation workflow
+name: GitHub Actions Demo
+
+# The event that triggers the workflow automatically
+on:
+  workflow_dispatch:
+
+# The sequence of tasks to execute
+jobs:
+  build-and-test:
+    # The type of virtual machine environment the job runs on
+    runs-on: ubuntu-latest
+
+    # Individual steps to execute in sequence
+    steps:
+      # Step 1: Check out the repository code onto the runner machine
+      - name: Checkout Repository Code
+        uses: actions/checkout@v4
+
+      # Step 2: Set up a runtime environment (Node.js example)
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      # Step 3: Install dependencies
+      - name: Install Dependencies
+        run: npm install
+
+      # Step 4: Run your test suites
+      - name: Run Tests
+        run: npm test
